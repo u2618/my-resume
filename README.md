@@ -1,11 +1,19 @@
 # my-resume
-Another LaTeX template for a resume/CV. This one was inspired by ![AltaCV](https://github.com/liantze/AltaCV) and various others but does exactly what I needed.
-It borrows a few lines of code from ![AltaCV](https://github.com/liantze/AltaCV) and ![AwesomeCV](https://github.com/posquit0/Awesome-CV).
+I discovered ![My Resume](https://github.com/GiantMolecularCloud/my-resume) and loved it instantly. I was playing around with ![AltaCV](https://github.com/liantze/AltaCV) before but the result was a little too unorganized for my taste. 
 
-Note that my-resume runs on XeLaTeX.
+With the original layout proposed by @GiantMolecularCloud, I had problems fitting my really long employers name. So I decided to borrow the implementation from AltaCV and included these in my take on a resume cv.
 
-An Overleaf template can be found here: ![overleaf template](https://www.overleaf.com/latex/templates/my-resume/qxsxdtmknkfr)  
-(Note that this template may not be the most up-to-date version. Try the latest version from GitHub first if you encounter problems.)
+Changes compared to @GiantMolecularCloud's CV:
+- Upgraded from fontawesome to fontawesome5
+- Added \cvevent from AltaCV
+- Added \cvref from AltaCV
+- Added \cvachievement from AltaCV
+- Added \divider from AltaCV
+- Harmonized colors, text sized and other small stuff
+
+Note that my-resume runs on XeLaTeX or LuaLaTeX only.
+
+I am working on an overleaf template so you can get going right away.
 
 # Example PDF
 
