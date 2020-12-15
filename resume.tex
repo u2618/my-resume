@@ -1,5 +1,5 @@
-\documentclass[%singlesided,
-               doublesided,
+\documentclass[singlesided,
+               %doublesided,
                paper=a4,
                fontsize=10pt
               ]{my-resume}
@@ -46,7 +46,7 @@
 
 \begin{document}
 
-\name{Dr. Nico Krieger}
+\name{Bruce Wayne}
 \tagline{Amazing tag line that makes HR managers want to hire you immediately.\\The tag line is aligned with the bottom of the picture to the right, so if you have\\multiple lines it fills the space to your name from the bottom. You might want to\\introduce manual line breaks to make this look nicer then simply filling up the lines.}
 \photo[round]{picture.jpg}{\dimexpr \headerheight-\marginbottom}   % make photo exactly match the header with margintop/marginright/marginbottom as margin
 
@@ -58,22 +58,18 @@
     
     \email{mail@mailprovider.com}
     \phone{+49 123 456789}
-    \location{Some Street 1, 12345 City Name}
-    \vspace{0.5em}
-    \homepage{nicokrieger.com}{https://www.nicokrieger.de}
-    \github{@GiantMolecularCloud}{https://github.com/giantmolecularcloud}
-    \linkedin{Nico Krieger}{https://www.linkedin.com/in/nico-krieger-6b28151b2/}
-    \orcid{0000-0003-1104-2014}{https://www.orcid.org/0000-0003-1104-2014}
-    \ads{NASA/ADS publication list}{https://ui.adsabs.harvard.edu/search/fq=\%7B!type\%3Daqp\%20v\%3D\%24fq\_database\%7D&fq\_database=database\%3A\%20astronomy&p\_=0&q=pubdate\%3A\%5B2016-01\%20TO\%209999-12\%5D\%20author\%3A(\%22Krieger\%2C\%20Nico\%22)&sort=date\%20desc\%2C\%20bibcode\%20desc}
+    \location{Bat Cave 1, 12345 Gotham City}
+    \homepage{Website}{https://www.batman.com}
+    \github{@RealBatman}{https://github.com/RealBatman}
+    \linkedin{Bruce Wayne}{https://www.linkedin.com/in/bruce-wayne-12345/}
+    \orcid{0000-0000-0000-0000}{https://www.orcid.org/0000-0000-0000-0000}
+    \ads{NASA/ADS publication list}{https://ui.adsabs.harvard.edu/search/fq=\%7B!type\%3Daqp\%20v\%3D\%24fq\_database\%7D&fq\_database=database\%3A\%20astronomy&p\_=0&q=pubdate\%3A\%5B2016-01\%20TO\%209999-12\%5D\%20author\%3A(\%22Wayne\%2C\%20Bruce\%22)&sort=date\%20desc\%2C\%20bibcode\%20desc}
     
     \section{Skills}
     
     \skillsection{Programming}
     \skill{Python}{5}
     \skill{Bash}{4}
-    \skill{C++}{2}
-    \skill{Apple Script}{3}
-    \skill{HTML/CSS}{3}
     \skill{LaTeX}{4}
     
     \vspace{0.5em}
@@ -85,9 +81,7 @@
     \vspace{0.5em}
     \skillsection{Software \& Tools}
     \skill{Visualisation}{5}
-    (e.g. matplotlib, gnuplot, ...)\\
     \skill{Data handling/analysis}{5}
-    (e.g. numpy, scipy, pandas, ...)\\
     \skill{Docker}{3}
     \skill{Office}{4}
     
@@ -104,66 +98,91 @@
     
     \section{Certificates}
     \simpleskill{AWS certified cloud practitioner}
+    \bigskip
+    
+    \section{Awards}
+    \cvachievement{\faTrophy}{Sexiest super hero alive}{Super hero academy, 2016}
 
 }
 \mainbar{
     \section{About this template}
     Section are set in bold face. An optional parameter of \texttt{\textbackslash section} takes a symbol to add in front of the text. This option is used in the jobs and education sections below.
     
-    \section[\faGears]{Work history}
-    \job{date}
-        {Employer name and city}
-        {Position Title}
-        {Additional details for this position. Can be left empty to omit this line}
-    \job{01/2020 - 12/2020}
-        {An employer with a long name,\\City in new line}
-        {Previous position}
-        {}
+    \section[\faCogs]{Work history}
+    \cvevent{Job title}
+            {Really long name of some employer I used to work for\\ Division within the really long employer name}
+            {Date from -- Date to}
+            {City}
     
-    \section[\faMortarBoard]{Education}
-    \job{01/2019 - 12/2019}
-        {University, City}
-        {Bachelor of Something}
-        {}
-
-    \section{Achievements, honours and awards}
-    \achievement{My first achievement}
-    \achievement{My second achievement}
-
-    \section{General Skills}
-    \smallskip % additional skip because tag outlines use up space
-    \tag{Tag 1}
-    \tag{Tag 2}
-    \tag{and}
-    \tag{another tag}
-    \tag{some more tags}
-    \tag{yet another one}
-    \tag{tags flow over}
-    \tag{to the next line}
-    \tag{if necessary}
+    \begin{itemize}
+    	\item Optional:
+    	\item Details about your job
+    \end{itemize}
+    \divider 
     
-    \medskip
-    Tags must be ordered by hand with newlines to get a nice layout, especially for long tags.
+    \cvevent{Job title}
+    {Employer\\ Division }
+    {Date} %you can skip either of the two fields
+    {} %you can skip the city if it's in your company's name already
+    \smallskip
+	\tag{You}\tag{can}\tag{also}\tag{put}\tag{tags}\tag{here}\tag{to}\tag{link}\tag{to}\tag{your}\tag{skill section}
     
-    \section{Wheel Chart}
-    % This is taken from AltaCV
-    % see https://github.com/liantze/AltaCV for details
-    \wheelchart{1.5cm}{0.5cm}{% outer and inner diameter
-        6/8em/accent!20/Sleep,          % comma-separated list of
-        8/8em/accent!40/Daytime job,    % fraction of 24 / line length / color / label
-        2/8em/accent!80/Training,          % here, the color is shades of the accent color
-        3/8em/accent!60/Recovering from fighting criminals,
-        5/8em/accent/Being Batman
-    }
+    \section[\faProjectDiagram]{Projects}
+    \cvevent{Fighting the Joker}{Funded by Gotham City Super Hero Department}{Jan 2018 -- Dez 2021}{} %by now, you get the idea behind cvevents
+    
+    \divider
+    
+    \cvevent{Another Project}{Funded by Gotham City}{Sometime}{}
+    
+    \divider
+    
+    \cvevent{And another one}{Funded by Gotham City}{Sometime}{}
+    
+    %%%% We stop here with filling up the page, because if we the content does not fit the page,
+    %%%% the minipage will float onto the next page and essentially break the entire document.
+ 
 }
 \makebody
 \clearpage
 
 
 \pagestyle{highlightmain}
-\highlightbar{}
+\highlightbar{ %you can leave this highlightbar empty if you use the doublesided option.
+	           % If you are on single-sided, you need to put some content in here, otherwise
+	           % the text of the mainbar will have a bad offset
+	           % a simple \phantom{foo} will do the trick: It's some content, but it's invisible
+	           
+    \section{Some section}
+    \cveventtight{Some event in the highlightbar}{Details}{Date}{Location} %other than \cvevent, \cveventtight will place date and location in two lines. There is not way to break lines, though. If you need that, edit the \cveventtight command in the class-file and look at how \cvref is implemented (with \begin{description}...\end{description}). These will break lines just fine but you need to fiddle with the spacing.
+    
+    \bigskip
+    
+    \section{Referenzen}
+    
+    \cvref{Prof. Dr. Important Guy}{Job title\\Your really long former employer whose name is too long for one line}{email@example.com}{Address Line 1\\Address line two}
+
+} %leaving this completely empty will work as long as you have the doublesided option on. You do need to put some content in if you are on singlesided, though.
 \mainbar{
 
+    %%%% Here we continue with providing extra information if one side is not enough
+    
+    \section[\faGraduationCap]{Education}
+    %education events work just like job events
+    \cvevent{Master of Superheros}
+    {University of Superheros}
+    {Date}
+    {Gotham City} 
+      
+    \section[\faBalanceScale]{Wheel Chart}
+    % This is taken from AltaCV
+    % see https://github.com/liantze/AltaCV for details
+    \wheelchart{1.5cm}{0.5cm}{% outer and inner diameter
+    	6/8em/accent!20/Sleep,          % comma-separated list of
+    	8/8em/accent!40/Daytime job,    % fraction of 24 / line length / color / label
+    	2/8em/accent!80/Training,          % here, the color is shades of the accent color
+    	3/8em/accent!60/Recovering from fighting criminals,
+    	5/8em/accent/Being Batman
+    } 
     \section{Another section}
     
     This page uses the page style \texttt{highlightmain} which shows the highlight bar (gray) and the main part (white background) but omits the header. 
@@ -199,24 +218,11 @@ The (relative) lengths reserved for date, journal and links can be set with the 
 \bigskip
 
 \publication
-	{The turbulent gas structure in the centers of NGC~253 and the Milky Way} % Title
-	{\textbf{N. Krieger}, A. Bolatto, E. Koch, A. Leroy, E. Rosolowsky, F. Walter, A. Wei\ss, D. Eden, R. Levy, D. Meier, E. Mills, T. Moore, J. Ott, Y. Su, S. Veilleux} % Authors
+	{Fighting Criminals All Around the World} % Title
+	{\textbf{B. Wayne}, S. Man, C. America, T. Thing} % Authors
 	{2020} % Year
-	{The Astrophysical Journal Vol. 899, Issue 2, id.158} % Journal
-	{\ADS{https://ui.adsabs.harvard.edu/abs/2020ApJ...899..158K}, \arXiv{https://arxiv.org/abs/2008.02518}} % ADS & arxiv links
+	{The Superhero Journal Vol. 1, Issue 1, id.1} % Journal
+	{\ADS{https://ui.adsabs.harvard.edu/abs/...}, \arXiv{https://arxiv.org/abs/...}} % ADS & arxiv links
 
-\publication
-	{The molecular ISM in the Super Star Clusters of the starburst NGC253} % Title
-	{\textbf{N. Krieger}, A. Bolatto, A. Leroy, R. Levy, E. Mills, D. Meier, S. Veilleux, F. Walter, A. Wei\ss} % Authors
-	{2020} % Year
-	{The Astrophysical Journal Vol.897, Issue 2, id.176} % Journal
-	{\ADS{https://ui.adsabs.harvard.edu/abs/2020ApJ...897..176K}, \arXiv{https://arxiv.org/abs/2006.08262}} % ADS & arxiv links
-
-\publication
-	{The Molecular Outflow in NGC\,253 at a Resolution of Two Parsecs} % Title
-	{\textbf{N. Krieger}, A. Bolatto, F. Walter, A. Leroy, L. Zschaechner, D. Meier, J. Ott, A. Wei\ss, E. Mills, S. Veilleux, M. Gorski} % Authors
-	{2019} % Year
-	{The Astrophysical Journal Vol.881, Issue 1, article id. 43, 20 pp} % Journal
-	{\ADS{https://ui.adsabs.harvard.edu/abs/2019ApJ...881...43K}, \arXiv{https://arxiv.org/abs/1907.00731}} % ADS & arxiv links
 
 \end{document}

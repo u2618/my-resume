@@ -12,7 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{my-resume}[2020/11/17 my-resume v0.1, my own resume/CV class.]
+\ProvidesClass{my-resume}[2020/12/13 my-resume v0.1, my own resume/CV class.]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,15 +42,17 @@
 % REQUIRED PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \RequirePackage[utf8]{inputenc}
-\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+%\RequirePackage[T1]{fontenc}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
 \RequirePackage[skins]{tcolorbox}       % somehow required for tikz to work at all
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
-\RequirePackage{fontawesome}
+\RequirePackage{fontawesome5}
 \RequirePackage{academicons}
+\RequirePackage{multirow,tabularx}
+\RequirePackage{dashrule}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -285,6 +287,8 @@
     \vspace*{\dimexpr \headerheight+0.5em}
 }
 
+% Adapted from https://github.com/liantze/AltaCV/
+\newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BODY
@@ -294,8 +298,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\infofield}[2]{\mbox{\makebox[5mm]{\textcolor{accent}{\normalsize #1}}\hspace{0.5em}#2}\vspace{0.2em}\newline}
-\newcommand{\email}[1]{\infofield{\faEnvelope}{\href{mailto:#1}{#1}}}
-\newcommand{\address}[1]{\infofield{\faAt}{#1}}
+\newcommand{\email}[1]{\infofield{\faAt}{\href{mailto:#1}{#1}}}
 \newcommand{\location}[1]{\infofield{\faMapMarker}{#1}}
 \newcommand{\phone}[1]{\infofield{\faPhone}{#1}}
 \newcommand{\homepage}[2]{\infofield{\faHome}{\href{#2}{#1}}}
@@ -368,6 +371,26 @@
   {\color{emphasis}\large\bfseries{#1}\par}\medskip
 }
 
+
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Adapted from https://github.com/liantze/AltaCV/
+\newcommand{\cvref}[4]{%
+  \smallskip
+  %{\large\textcolor{accent}{\textbf{#1}}\par}
+  {\large\textcolor{accent}{\textit{#1}}\par}
+  %\textcolor{emphasis}{\textbf{#2}}\par
+  \begin{description}[font=\color{emphasis},style=multiline,leftmargin=1.35em,align=left]
+  \vspace{-1em}
+\item[\small\normalfont\faAddressBook] {\small #2}
+  \vspace{-0.8em}
+  \item[\small\normalfont\faAt] {\small \href{mailto:#3}{#3}}
+  \vspace{-0.7em}
+  \item[\small\normalfont\faMapMarker] {\small #4}
+  \end{description}
+%   \medskip
+}
+
 % format job/school list
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -404,6 +427,30 @@
     \vspace{0.5em}
 }
 
+% Adapted from https://github.com/liantze/AltaCV/
+\newcommand{\cvevent}[4]{%
+  %{\large\color{accent}\textbf{#1}\par}
+  {\large\color{accent}\textit{#1}\par}
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{
+  \textbf{\color{emphasis}#2}\par
+  \smallskip}
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~~#3}}}%
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker~~#4}}}\par
+  \normalsize
+}
+\newcommand{\cveventtight}[4]{%
+  %{\large\color{accent}\textbf{#1}\par}
+  {\large\color{accent}\textit{#1}\par}
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{
+  \textbf{\color{emphasis}#2}\par
+  \smallskip}
+  \ifstrequal{#3}{}{}{{\small\makebox[\linewidth][l]{\faCalendar~~#3}}}\par
+  \ifstrequal{#4}{}{}{{\small\makebox[\linewidth][l]{\faMapMarker~~\,#4}}}\par
+  \normalsize
+}
+%
 
 % skill with 5 dot bar chart
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -418,14 +465,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\simpleskill}[1]{%
-    \textcolor{emphasis}{\textbf{#1}}\par%
+    \textcolor{emphasis}{\large\color{accent}\textit{#1}}\par%
 }
 
 % sectioning of skills
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\skillsection}[1]{%
-    \textit{\color{accent}#1}\par
+    \textit{\color{accent}\large#1}\par
 }
 
 % tag (framed word or phrase)
@@ -527,7 +574,7 @@
     {\normalsize \color{emphasis}#1\par}
     \vspace{0.1em}%
     \begin{minipage}[t]{3mm}%
-        \makebox[3mm][c]{\footnotesize \faGroup}
+        \makebox[3mm][c]{\footnotesize \faUsers}
     \end{minipage}%
     \hspace{0.5em}%
     \begin{minipage}[t]{\dimexpr \linewidth-3mm-0.5em}%
@@ -559,7 +606,7 @@
     \hspace{1.0em}
     \begin{minipage}[t]{\publinklength}%
         \ifstrequal{#5}{}{}{%
-            \footnotesize \makebox[3mm][c]{\faChain} \hspace{0.25em} #5\par
+            \footnotesize \makebox[3mm][c]{\faLink} \hspace{0.25em} #5\par
         }%
     \end{minipage}%
     \par\normalsize
@@ -579,6 +626,16 @@
     \end{minipage}%
     \par
     \vspace{0.5em}
+}
+
+% adapted from AltaCV: https://github.com/liantze/AltaCV
+\newcommand{\cvachievement}[3]{%
+  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
+  %\multirow{2}{*}{\Large\color{accent}#1} & {\large\bfseries\textcolor{accent}{#2}}\\
+  \multirow{2}{*}{\Large\color{accent}#1} & {\large\itshape\textcolor{accent}{#2}}\\
+  & #3
+  \end{tabularx}%
+  \smallskip
 }
 
 % lists
