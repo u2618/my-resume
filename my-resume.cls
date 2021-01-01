@@ -45,7 +45,7 @@
 \RequirePackage[utf8]{inputenc}
 %\RequirePackage[T1]{fontenc}
 \RequirePackage{tikz}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows,calc}
 \RequirePackage[skins]{tcolorbox}       % somehow required for tikz to work at all
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
@@ -54,6 +54,7 @@
 \RequirePackage{multirow,tabularx}
 \RequirePackage{dashrule}
 
+\newsavebox\mybox
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FILTER IRRELEVANT WARNINGS
@@ -125,6 +126,7 @@
 \definecolor{awesome-nephritis}{HTML}{27AE60}
 \definecolor{awesome-concrete}{HTML}{95A5A6}
 \definecolor{awesome-darknight}{HTML}{131A28}
+\definecolor{awesome-green}{HTML}{006600}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -303,6 +305,7 @@
 \newcommand{\phone}[1]{\infofield{\faPhone}{#1}}
 \newcommand{\homepage}[2]{\infofield{\faHome}{\href{#2}{#1}}}
 \newcommand{\linkedin}[2]{\infofield{\faLinkedin}{\href{#2}{#1}}}
+\newcommand{\xing}[2]{\infofield{\faXing}{\href{#2}{#1}}}
 \newcommand{\github}[2]{\infofield{\faGithub}{\href{#2}{#1}}}
 \newcommand{\orcid}[2]{\infofield{\aiOrcid}{\href{#2}{#1}}}
 \newcommand{\ads}[2]{\infofield{\aiADS}{\href{#2}{#1}}}
@@ -450,7 +453,69 @@
   \ifstrequal{#4}{}{}{{\small\makebox[\linewidth][l]{\faMapMarker~~\,#4}}}\par
   \normalsize
 }
-%
+
+% timeline (inspired by https://de.overleaf.com/latex/templates/curriculum-vitae-timeline-example/bsbyzcmxmvvq)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\timeline#1#2#3#4{%
+  \begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+    \fill[color=white] (-0.165\textwidth,-#1) rectangle +(0.165\textwidth,-.3);
+    \path [fill=#2]  (-0.165\textwidth,0) -- (-.6,0) -- ++(.3,-.3) -- ++(-.3,-.3) -- (-0.165\textwidth,-.6) -- cycle;
+    \node [right,white] at (-0.165\textwidth+.12cm,-.33) {\small\strut\textbf{#4}};
+    \path [fill=black] (-.1,-.2) -- ++(.1,-.1) -- ++(-.1,-.1) -- ++(-.1,.1) -- cycle;
+  \end{tikzpicture}%
+}
+\def\timelinestart{%
+  \begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0},remember picture,overlay]
+    \coordinate (a) at (0.165\textwidth-.1cm,-.1);
+  \end{tikzpicture}%
+}
+\def\timelineend{%
+  \begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0},remember picture,overlay]
+    \draw (a) -- (0.165\textwidth-.1cm,.8);
+  \end{tikzpicture}%
+}
+\newenvironment{cvtimeline}{%
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}%
+  \timelinestart%
+  &\\[-0ex]
+}{%
+  \timelineend\\[-2ex]
+  \end{tabular*}
+}
+\newcommand{\cvitemtime}[5]{%
+  &%
+  \sbox{\mybox}{\parbox[]{0.795\linewidth}{%
+    \ifstrequal{#1}{}{}{{\large\color{accent}\textit{#1}\par}
+    \smallskip\normalsize}
+    \ifstrequal{#2}{}{}{
+      \textbf{\color{emphasis}#2}%
+    }
+    \ifstrequal{#4}{}{}{{\hfill\footnotesize{\faMapMarker~~#4}}}\par
+    \footnotesize
+    #5\vspace{\parsep}%
+    \normalsize
+  }%
+}%
+\pgfmathparse{0.0351459804*(\ht\mybox+\dp\mybox)}\global\let\pheight\pgfmathresult%
+\pgfmathparse{0.0351459804*(\ht\mybox+\dp\mybox}\global\let\pshift\pgfmathresult\\[-4ex]
+\timeline{\pheight}{accent}{accent}{#3}%
+&%
+\parbox[b]{0.795\textwidth}{%
+  \ifstrequal{#1}{}{}{{\large\color{accent}\textit{#1}\par}
+  \smallskip\normalsize}
+  \ifstrequal{#2}{}{}{
+    \textbf{\color{emphasis}#2}%
+  }
+  \ifstrequal{#4}{}{}{{\hfill\footnotesize{\faMapMarker~~#4}}}\par
+  \footnotesize
+  #5\vspace{\parsep}%
+  \normalsize
+  }\\%
+}
+
+
+
 
 % skill with 5 dot bar chart
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
